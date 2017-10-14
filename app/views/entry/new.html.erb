@@ -1,0 +1,39 @@
+<%= form_for @entry, :url => entry_path do |f| %>
+  <div class="page-header">
+    <h1>お問い合わせ</h1>
+  </div>
+
+  <% if @entry.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @entry.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <tr>
+      <th>名前<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <th>電話番号<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :tel %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :email %></td>
+    </tr>
+    <% @free_form.free_texts.present? %>
+      <% @entry.free_texts.each_with_index do |text, i| %>
+        <tr>
+          <th><%= @free_form.free_texts[i][:comment] %></th>
+          <td><%= text_area_tag 'free_texts[]', text, size: "80x10" %></td>
+        </tr>
+      <% end %>
+  </table>
+  <%= f.submit '確認', class: 'btn btn-primary' %>
+<% end %>
