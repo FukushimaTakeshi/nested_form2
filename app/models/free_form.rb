@@ -1,9 +1,9 @@
 class FreeForm
   include ActiveModel::Model
 
-  attr_accessor :free_texts
+  attr_accessor :test, :free_texts
 
-  def free_texts
+  def text
     [{
       no: 1,
       comment: "コメント１"
@@ -13,5 +13,4 @@ class FreeForm
       comment: "コメント２"
     }]
   end
-
 end
