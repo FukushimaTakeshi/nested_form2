@@ -20,7 +20,7 @@ ja:
             name_katakana:
               blank: 名前(カナ)を入力して下さい。
               too_long: 名前(カナ)は%{count}文字以内で入力して下さい。
-              invalid: 氏名は全角カタカナのみで入力して下さい
+              invalid: 名前(カナ)は全角カタカナのみで入力して下さい
             tel:
               blank: 電話番号を入力して下さい。
               not_a_number: 電話番号は半角数字で入力して下さい。

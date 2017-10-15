@@ -24,6 +24,6 @@ class EntryController < ApplicationController
   private
     # Strong Parameters
     def entry_params
-      params.require(:entry).permit(:name, :wname_katakana, :tel, :email, free_form_attributes: [:free_texts])
+      params.require(:entry).permit(:name, :name_katakana, :tel, :email, free_form_attributes: [:free_texts])
     end
 end
