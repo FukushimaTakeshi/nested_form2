@@ -23,7 +23,7 @@ class Inquiry
     free_form.each_with_index do |value, index|
       class_eval do
         attr_accessor :"free_text_#{index}"
-        validates :"free_text_#{index}", length: { maximum: 5 }
+        validates :"free_text_#{index}", length: { maximum: 100 }
       end
       # I18n ja.ymlのattributesにfree_formの数に応じた項目を定義(ex. free_text_0: '備考1')
       I18n.backend.store_translations :ja, activemodel: {
