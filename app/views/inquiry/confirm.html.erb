@@ -1,0 +1,28 @@
+<%= form_for @inquiry, :url => inquiry_finish_path do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :name %></th>
+      <td><%= :name %></td>
+      <%= f.hidden_field :name %>
+    </tr>
+    <tr>
+      <th><%= f.label :tel %></th>
+      <td><%= :tel %></td>
+      <%= f.hidden_field :tel %>
+    </tr>
+    <tr>
+      <th><%= f.label :email %></th>
+      <td><%= :email %></td>
+      <%= f.hidden_field :email %>
+    </tr>
+
+    <% @free_form.present? %>
+      <% @free_form.each_with_index do |value, index| %>
+        <tr>
+          <th><%= f.label :"free_text_#{index}" %></th>
+          <td><%= :"free_text_#{index}" %></td>
+        </tr>
+      <% end %>
+    </table>
+  <%= f.submit '送信', :class => 'btn btn-primary' %>
+<% end %>

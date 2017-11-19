@@ -1,0 +1,17 @@
+ja:
+  activemodel:
+    models:
+      inquiry:
+    attributes:
+      inquiry:
+        name: 名前
+        tel: 電話番号
+        email: メールアドレス
+
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        blank: を入力して下さい。
+        too_long: は%{count}文字以内で入力して下さい。
+        not_a_number: は半角数字で入力して下さい。
+        invalid: は不正な値です。
