@@ -1,4 +1,4 @@
-<%= form_for @inquiry, :url => inquiry_finish_path do |f| %>
+<%= form_for @inquiry, :url => inquiry_create_path do |f| %>
   <table>
     <tr>
       <th><%= f.label :name %></th>
@@ -21,8 +21,9 @@
         <tr>
           <th><%= f.label :"free_text_#{index}" %></th>
           <td><%= :"free_text_#{index}" %></td>
+          <%= f.hidden_field :"free_text_#{index}" %>
         </tr>
       <% end %>
     </table>
-  <%= f.submit '送信', :class => 'btn btn-primary' %>
+  <%= f.submit '送信' %>
 <% end %>

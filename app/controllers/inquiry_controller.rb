@@ -11,7 +11,7 @@ class InquiryController < ApplicationController
     render :new unless @inquiry.valid?
   end
 
-  def finish
+  def create
     @free_form = FreeForm.all
     @inquiry = Inquiry.new(@free_form, inquiry_params(@free_form.count))
     @inquiry.save!
