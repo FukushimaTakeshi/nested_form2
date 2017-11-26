@@ -2,26 +2,23 @@ class InquiryController < ApplicationController
 
   def new
     @free_form = FreeForm.all
-    @inquiry = Inquiry.new(@free_form)
+    @inquiry = Inquiry.new(answers: Array.new(@free_form.count).map { Answer.new })
   end
 
   def confirm
     @free_form = FreeForm.all
-    @inquiry = Inquiry.new(@free_form, inquiry_params(@free_form.count))
+    @inquiry = Inquiry.new(inquiry_params)
     render :new unless @inquiry.valid?
   end
 
-  def create
-    @free_form = FreeForm.all
-    @inquiry = Inquiry.new(@free_form, inquiry_params(@free_form.count))
+  def finish
+    @inquiry = Inquiry.new(inquiry_params)
     @inquiry.save!
   end
 
   private
-
   # Strong Parameters
-  def inquiry_params(count)
-    free_texts_params = count.times.map { |index| "free_text_#{index}".to_sym }
-    params.require(:inquiry).permit([:name, :tel, :email] << free_texts_params)
+  def inquiry_params
+    params.require(:inquiry).permit(:name, :name_katakana, :tel, :email, answers_attributes: [:value, :value2])
   end
 end

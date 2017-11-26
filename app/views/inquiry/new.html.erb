@@ -8,6 +8,7 @@
       <strong>入力内容にエラーがあります</strong>
       <ul>
         <% @inquiry.errors.full_messages.each do |msg| %>
+          <%# raise %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -28,10 +29,11 @@
       <td><%= f.text_field :email %></td>
     </tr>
     <% @free_form.present? %>
-      <% @free_form.each_with_index do |value, index| %>
+      <%= f.fields_for :answers do |answer| %>
         <tr>
-          <th><%= f.label :"free_text_#{index}" %></th>
-          <td><%= f.text_area :"free_text_#{index}", size: "50x5" %></td>
+          <th><%#= f.label %></th>
+          <td><%= answer.text_area :value, size: "50x5" %></td>
+          <td><%= answer.text_area :value2, size: "50x5" %></td>
         </tr>
       <% end %>
   </table>
