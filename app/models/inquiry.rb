@@ -1,7 +1,7 @@
 class Inquiry
   include ActiveModel::Model
 
-  attr_accessor :name, :name_katakana, :tel, :email, :answers
+  attr_accessor :name, :name_katakana, :tel, :email, :inquiry_details
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :tel, presence: true, numericality: true, length: { maximum: 15 }
@@ -10,14 +10,14 @@ class Inquiry
                     format: { with: VALID_EMAIL_REGEX }
 
   def valid?
-    @answers.each { |v| v.valid? }
-    super
+    valid_inquiry_details = @inquiry_details.map { |v| v.valid? }.all?
+    super && valid_inquiry_details
   end
 
-  def save!
+  def save
   end
 
-  def answers_attributes=(attributes)
-    @answers = attributes.map { |_k, v| Answer.new(v) }
+  def inquiry_details_attributes=(attributes)
+    @inquiry_details = attributes.map { |_k, v| InquiryDetail.new(v) }
   end
 end

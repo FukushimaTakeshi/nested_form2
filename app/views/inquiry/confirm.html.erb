@@ -2,26 +2,40 @@
   <table>
     <tr>
       <th><%= f.label :name %></th>
-      <td><%= :name %></td>
+      <td><%= @inquiry.name %></td>
       <%= f.hidden_field :name %>
     </tr>
     <tr>
       <th><%= f.label :tel %></th>
-      <td><%= :tel %></td>
+      <td><%= @inquiry.tel %></td>
       <%= f.hidden_field :tel %>
     </tr>
     <tr>
       <th><%= f.label :email %></th>
-      <td><%= :email %></td>
+      <td><%= @inquiry.email %></td>
       <%= f.hidden_field :email %>
     </tr>
 
     <% @free_form.present? %>
-      <% @free_form.each_with_index do |value, index| %>
+      <tr>
+        <th><%= "詳細1" %></th>
+        <th><%= "詳細2" %></th>
+        <th><%= "詳細3" %></th>
+        <th><%= "詳細4" %></th>
+        <th><%= "詳細5" %></th>
+      </tr>
+      <%= f.fields_for :inquiry_details do |inquiry_f| %>
         <tr>
-          <th><%= f.label :"free_text_#{index}" %></th>
-          <td><%= :"free_text_#{index}" %></td>
-          <%= f.hidden_field :"free_text_#{index}" %>
+          <td><%= @inquiry.inquiry_details[inquiry_f.index].detail %></td>
+          <%= inquiry_f.hidden_field :detail %>
+          <td><%= @inquiry.inquiry_details[inquiry_f.index].detail2 %></td>
+          <%= inquiry_f.hidden_field :detail2 %>
+          <td><%= @inquiry.inquiry_details[inquiry_f.index].detail3 %></td>
+          <%= inquiry_f.hidden_field :detail3 %>
+          <td><%= @inquiry.inquiry_details[inquiry_f.index].detail4 %></td>
+          <%= inquiry_f.hidden_field :detail4 %>
+          <td><%= @inquiry.inquiry_details[inquiry_f.index].detail5 %></td>
+          <%= inquiry_f.hidden_field :detail5 %>
         </tr>
       <% end %>
     </table>

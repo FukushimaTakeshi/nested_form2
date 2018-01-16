@@ -2,11 +2,18 @@ ja:
   activemodel:
     models:
       inquiry:
+      inquiry_detail:
     attributes:
       inquiry:
         name: 名前
         tel: 電話番号
         email: メールアドレス
+      inquiry_detail:
+        detail: 詳細１
+        detail2: 詳細２
+        detail3: 詳細３
+        detail4: 詳細４
+        detail5: 詳細５
 
     errors:
       format: '%{attribute} %{message}'

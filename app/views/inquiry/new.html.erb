@@ -3,13 +3,18 @@
     <h1>お問い合わせ</h1>
   </div>
 
-  <% if @inquiry.errors.any? %>
+  <% if @inquiry.errors.any? || @inquiry.inquiry_details.any? { |inquiry_detail| inquiry_detail.errors.present? } %>
     <div>
       <strong>入力内容にエラーがあります</strong>
       <ul>
         <% @inquiry.errors.full_messages.each do |msg| %>
-          <%# raise %>
           <li><%= msg %></li>
+        <% end %>
+
+        <% @inquiry.inquiry_details.each do |inquiry_detail| %>
+          <% inquiry_detail.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -28,14 +33,29 @@
       <th><%= f.label :email %></th>
       <td><%= f.text_field :email %></td>
     </tr>
-    <% @free_form.present? %>
-      <%= f.fields_for :answers do |answer| %>
-        <tr>
-          <th><%#= f.label %></th>
-          <td><%= answer.text_area :value, size: "50x5" %></td>
-          <td><%= answer.text_area :value2, size: "50x5" %></td>
-        </tr>
-      <% end %>
+    <table style="border-top: 2px solid #bbb;">
+      <tr><br>
+        <td>
+        <% @free_form.present? %>
+          <tr>
+            <th><%= "詳細1" %></th>
+            <th><%= "詳細2" %></th>
+            <th><%= "詳細3" %></th>
+            <th><%= "詳細4" %></th>
+            <th><%= "詳細5" %></th>
+          </tr>
+          <%= f.fields_for :inquiry_details do |inquiry_f| %>
+            <tr>
+              <td><%= inquiry_f.text_field :detail %></td>
+              <td><%= inquiry_f.text_field :detail2 %></td>
+              <td><%= inquiry_f.text_field :detail3 %></td>
+              <td><%= inquiry_f.text_field :detail4 %></td>
+              <td><%= inquiry_f.text_field :detail5 %></td>
+            </tr>
+          <% end %>
+        </td>
+      </tr>
+    </table>
   </table>
   <%= f.submit '確認' %>
 <% end %>
