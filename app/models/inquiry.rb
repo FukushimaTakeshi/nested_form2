@@ -1,7 +1,7 @@
 class Inquiry
   include ActiveModel::Model
 
-  attr_accessor :name, :name_katakana, :tel, :email, :inquiry_details
+  attr_accessor :name, :tel, :email, :inquiry_details
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :tel, presence: true, numericality: true, length: { maximum: 15 }
